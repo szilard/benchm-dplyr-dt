@@ -92,8 +92,18 @@ d %&gt;% inner_join(dm, by=&quot;x&quot;)
 dt[dtm, nomatch=0]</code></pre>
 <div id="timings" class="section level4">
 <h4>Timings:</h4>
-<pre><code>            |    base     |   dplyr-df  |  dplyr-dt  |  dplyr-dt-k  |     dt     |     dt-k</code></pre>
 <table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">base</th>
+<th align="left">dplyr-df</th>
+<th align="left">dplyr-dt</th>
+<th align="left">dplyr-dt-k</th>
+<th align="left">dt</th>
+<th align="left">dt-k</th>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td align="left">filter</td>
