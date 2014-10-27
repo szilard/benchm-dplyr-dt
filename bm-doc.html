@@ -92,63 +92,53 @@ d %&gt;% inner_join(dm, by=&quot;x&quot;)
 dt[dtm, nomatch=0]</code></pre>
 <div id="timings" class="section level4">
 <h4>Timings:</h4>
+<pre><code>            |    base     |   dplyr-df  |  dplyr-dt  |  dplyr-dt-k  |     dt     |     dt-k</code></pre>
 <table>
-<thead>
-<tr class="header">
-<th align="left"></th>
-<th align="center">base</th>
-<th align="center">dplyr-df</th>
-<th align="center">dplyr-dt</th>
-<th align="center">dplyr-dt-k</th>
-<th align="center">dt</th>
-<th align="center">dt-k</th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
 <td align="left">filter</td>
-<td align="center">2</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
 </tr>
 <tr class="even">
 <td align="left">sort</td>
-<td align="center">30-60</td>
-<td align="center">20-30</td>
-<td align="center">1.5-3</td>
-<td align="center">1</td>
-<td align="center">1.5-3</td>
-<td align="center">1</td>
+<td align="left">30-60</td>
+<td align="left">20-30</td>
+<td align="left">1.5-3</td>
+<td align="left">1</td>
+<td align="left">1.5-3</td>
+<td align="left">1</td>
 </tr>
 <tr class="odd">
 <td align="left">new column</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">4</td>
-<td align="center">4</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">4</td>
+<td align="left">4</td>
 </tr>
 <tr class="even">
 <td align="left">aggregation</td>
-<td align="center">8-100</td>
-<td align="center">4-30</td>
-<td align="center">4-6</td>
-<td align="center">1.5</td>
-<td align="center">1.5-5</td>
-<td align="center">1</td>
+<td align="left">8-100</td>
+<td align="left">4-30</td>
+<td align="left">4-6</td>
+<td align="left">1.5</td>
+<td align="left">1.5-5</td>
+<td align="left">1</td>
 </tr>
 <tr class="odd">
 <td align="left">join</td>
-<td align="center">&gt;100</td>
-<td align="center">4-15</td>
-<td align="center">4-6</td>
-<td align="center">1.5-2.5</td>
-<td align="center">cannot</td>
-<td align="center">1</td>
+<td align="left">&gt;100</td>
+<td align="left">4-15</td>
+<td align="left">4-6</td>
+<td align="left">1.5-2.5</td>
+<td align="left">cannot</td>
+<td align="left">1</td>
 </tr>
 </tbody>
 </table>
