@@ -16,7 +16,7 @@ of values in the data.frames etc.
 The following operations are applied using base, dplyr (on data.frame and data.table with and without key)
 and data.table (with and without key):
 
-1. Filter 
+Filter 
 
 ```{r eval=FALSE}
 d[d$x>=10 & d$x<20,]
@@ -24,7 +24,7 @@ d %>% filter(x>=10, x<20)
 dt[x>=10 & x<20]
 ```
 
-2. Sort
+Sort
 
 ```{r eval=FALSE}
 d[order(d$x),]
@@ -32,7 +32,7 @@ d %>% arrange(x)
 dt[order(x)]
 ```
 
-3. New column
+New column
 
 ```{r eval=FALSE}
 d$y2 <- 2*d$y
@@ -40,7 +40,7 @@ d %>% mutate(y2 = 2*y)
 dt[,y2 := 2*y]
 ```
 
-4. Aggregation
+Aggregation
 
 ```{r eval=FALSE}
 tapply(d$y, d$x, mean)
@@ -48,7 +48,7 @@ d %>% group_by(x) %>% summarize(ym = mean(y))
 dt[, mean(y), by=x]
 ```
 
-5. Join
+Join
 
 ```{r eval=FALSE}
 merge(d, dm, by="x")
@@ -60,11 +60,11 @@ dt[dtm, nomatch=0]
 
 |                 |    base     |   dplyr-df  |  dplyr-dt  |  dplyr-dt-k  |     dt     |     dt-k    |
 | --------------- | ----------- | ----------- | ---------- | ------------ | ---------- |  ---------- |
-| filter          |     2       |     1       |     1      |      1       |      1     |       1     |
-| sort            |    30-60    |   20-30     |   1.5-3    |      1       |   1.5-3    |       1     |
-| new column      |     1       |     1       |     6      |      6       |      4     |       4     |
-| aggregation     |    8-100    |    4-30     |    4-6     |     1.5      |   1.5-5    |       1     |
-| join            |    >100     |    4-15     |    4-6     |   1.5-2.5    |    cannot  |       1     |
+| Filter          |     2       |     1       |     1      |      1       |      1     |       1     |
+| Sort            |    30-60    |   20-30     |   1.5-3    |      1       |   1.5-3    |       1     |
+| New column      |     1       |     1       |     6      |      6       |      4     |       4     |
+| Aggregation     |    8-100    |    4-30     |    4-6     |     1.5      |   1.5-5    |       1     |
+| Join            |    >100     |    4-15     |    4-6     |   1.5-2.5    |    cannot  |       1     |
 
 #### Summary:
 

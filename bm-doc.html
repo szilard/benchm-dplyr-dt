@@ -60,33 +60,23 @@ dm &lt;- data.frame(x = sample(m))</code></pre>
 <p>and corresponding data.tables with and without key on <code>x</code> (<code>d</code>’s size in RAM is around 100MB and 1GB, respectively).</p>
 <p>This is just a simple benchmark, could do more with various data types (e.g. character), several grouping variables (x1,x2,…), more values for size parameters (n,m), different distributions of values in the data.frames etc.</p>
 <p>The following operations are applied using base, dplyr (on data.frame and data.table with and without key) and data.table (with and without key):</p>
-<ol style="list-style-type: decimal">
-<li>Filter</li>
-</ol>
+<p>Filter</p>
 <pre class="r"><code>d[d$x&gt;=10 &amp; d$x&lt;20,]
 d %&gt;% filter(x&gt;=10, x&lt;20)
 dt[x&gt;=10 &amp; x&lt;20]</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Sort</li>
-</ol>
+<p>Sort</p>
 <pre class="r"><code>d[order(d$x),]
 d %&gt;% arrange(x)
 dt[order(x)]</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>New column</li>
-</ol>
+<p>New column</p>
 <pre class="r"><code>d$y2 &lt;- 2*d$y
 d %&gt;% mutate(y2 = 2*y)
 dt[,y2 := 2*y]</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Aggregation</li>
-</ol>
+<p>Aggregation</p>
 <pre class="r"><code>tapply(d$y, d$x, mean)
 d %&gt;% group_by(x) %&gt;% summarize(ym = mean(y))
 dt[, mean(y), by=x]</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Join</li>
-</ol>
+<p>Join</p>
 <pre class="r"><code>merge(d, dm, by=&quot;x&quot;)
 d %&gt;% inner_join(dm, by=&quot;x&quot;)
 dt[dtm, nomatch=0]</code></pre>
@@ -106,7 +96,7 @@ dt[dtm, nomatch=0]</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">filter</td>
+<td align="left">Filter</td>
 <td align="left">2</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -115,7 +105,7 @@ dt[dtm, nomatch=0]</code></pre>
 <td align="left">1</td>
 </tr>
 <tr class="even">
-<td align="left">sort</td>
+<td align="left">Sort</td>
 <td align="left">30-60</td>
 <td align="left">20-30</td>
 <td align="left">1.5-3</td>
@@ -124,7 +114,7 @@ dt[dtm, nomatch=0]</code></pre>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">new column</td>
+<td align="left">New column</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">6</td>
@@ -133,7 +123,7 @@ dt[dtm, nomatch=0]</code></pre>
 <td align="left">4</td>
 </tr>
 <tr class="even">
-<td align="left">aggregation</td>
+<td align="left">Aggregation</td>
 <td align="left">8-100</td>
 <td align="left">4-30</td>
 <td align="left">4-6</td>
@@ -142,7 +132,7 @@ dt[dtm, nomatch=0]</code></pre>
 <td align="left">1</td>
 </tr>
 <tr class="odd">
-<td align="left">join</td>
+<td align="left">Join</td>
 <td align="left">&gt;100</td>
 <td align="left">4-15</td>
 <td align="left">4-6</td>
