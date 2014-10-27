@@ -23,7 +23,7 @@ set.seed(123)
 ```{r}
 
 n <- 10e6
-m <- 100
+m <- 1e4
 
 benchmark(
   d <- data_frame(x = sample(m, n, replace=TRUE), y = runif(n)),

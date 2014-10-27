@@ -17,7 +17,7 @@ set.seed(123)
 
 ```r
 n <- 10e6
-m <- 100
+m <- 1e4
 
 benchmark(
   d <- data_frame(x = sample(m, n, replace=TRUE), y = runif(n)),
@@ -31,10 +31,10 @@ replications=1, columns=c("test", "elapsed"), order=NULL)
 
 ```
 ##                                                              test elapsed
-## 1 d <- data_frame(x = sample(m, n, replace = TRUE), y = runif(n))   0.630
-## 2                                                 dt <- tbl_dt(d)   0.102
+## 1 d <- data_frame(x = sample(m, n, replace = TRUE), y = runif(n))   0.634
+## 2                                                 dt <- tbl_dt(d)   0.103
 ## 3                                                dtk <- tbl_dt(d)   0.103
-## 4                                                  setkey(dtk, x)   0.326
+## 4                                                  setkey(dtk, x)   0.569
 ## 5                                 dm <- data_frame(x = sample(m))   0.001
 ## 6                                               dtm <- tbl_dt(dm)   0.001
 ```
@@ -56,12 +56,12 @@ replications=1, columns=c("test", "elapsed", "relative"), order=NULL)
 
 ```
 ##                              test elapsed relative
-## 1       d[d$x >= 10 & d$x < 20, ]   1.074    2.106
-## 2   d %>% filter(x >= 10, x < 20)   0.600    1.176
-## 3  dt %>% filter(x >= 10, x < 20)   0.573    1.124
-## 4 dtk %>% filter(x >= 10, x < 20)   0.511    1.002
-## 5            dt[x >= 10 & x < 20]   0.573    1.124
-## 6           dtk[x >= 10 & x < 20]   0.510    1.000
+## 1       d[d$x >= 10 & d$x < 20, ]   0.966    1.952
+## 2   d %>% filter(x >= 10, x < 20)   0.530    1.071
+## 3  dt %>% filter(x >= 10, x < 20)   0.497    1.004
+## 4 dtk %>% filter(x >= 10, x < 20)   0.495    1.000
+## 5            dt[x >= 10 & x < 20]   0.496    1.002
+## 6           dtk[x >= 10 & x < 20]   0.495    1.000
 ```
 
 maybe dt has some tricks to use the "key" for ranges?
@@ -83,12 +83,12 @@ replications=1, columns=c("test", "elapsed", "relative"), order=NULL)
 
 ```
 ##                 test elapsed relative
-## 1    d[order(d$x), ]   7.780   28.603
-## 2   d %>% arrange(x)   5.104   18.765
-## 3  dt %>% arrange(x)   0.407    1.496
-## 4 dtk %>% arrange(x)   0.273    1.004
-## 5       dt[order(x)]   0.405    1.489
-## 6      dtk[order(x)]   0.272    1.000
+## 1    d[order(d$x), ]   9.526   34.894
+## 2   d %>% arrange(x)   6.246   22.879
+## 3  dt %>% arrange(x)   0.655    2.399
+## 4 dtk %>% arrange(x)   0.274    1.004
+## 5       dt[order(x)]   0.655    2.399
+## 6      dtk[order(x)]   0.273    1.000
 ```
 
 
@@ -110,10 +110,10 @@ replications=1, columns=c("test", "elapsed", "relative"), order=NULL)
 ##                         test elapsed relative
 ## 1            d$y2 <- 2 * d$y   0.039    1.000
 ## 2   d %>% mutate(y2 = 2 * y)   0.039    1.000
-## 3  dt %>% mutate(y2 = 2 * y)   0.250    6.410
-## 4 dtk %>% mutate(y2 = 2 * y)   0.250    6.410
+## 3  dt %>% mutate(y2 = 2 * y)   0.249    6.385
+## 4 dtk %>% mutate(y2 = 2 * y)   0.249    6.385
 ## 5      dt[, `:=`(y2, 2 * y)]   0.144    3.692
-## 6     dtk[, `:=`(y2, 2 * y)]   0.144    3.692
+## 6     dtk[, `:=`(y2, 2 * y)]   0.143    3.667
 ```
 
 ```r
@@ -138,12 +138,12 @@ replications=1, columns=c("test", "elapsed", "relative"), order=NULL)
 
 ```
 ##                                              test elapsed relative
-## 1                          tapply(d$y, d$x, mean)   1.228    8.079
-## 2   d %>% group_by(x) %>% summarize(ym = mean(y))   0.512    3.368
-## 3  dt %>% group_by(x) %>% summarize(ym = mean(y))   0.543    3.572
-## 4 dtk %>% group_by(x) %>% summarize(ym = mean(y))   0.260    1.711
-## 5                           dt[, mean(y), by = x]   0.241    1.586
-## 6                          dtk[, mean(y), by = x]   0.152    1.000
+## 1                          tapply(d$y, d$x, mean)   2.406   17.691
+## 2   d %>% group_by(x) %>% summarize(ym = mean(y))   1.112    8.176
+## 3  dt %>% group_by(x) %>% summarize(ym = mean(y))   0.760    5.588
+## 4 dtk %>% group_by(x) %>% summarize(ym = mean(y))   0.235    1.728
+## 5                           dt[, mean(y), by = x]   0.419    3.081
+## 6                          dtk[, mean(y), by = x]   0.136    1.000
 ```
 
 
@@ -162,10 +162,10 @@ replications=1, columns=c("test", "elapsed", "relative"), order=NULL)
 
 ```
 ##                                test elapsed relative
-## 1    d %>% inner_join(dm, by = "x")   0.634    3.644
-## 2  dt %>% inner_join(dtm, by = "x")   0.711    4.086
-## 3 dtk %>% inner_join(dtm, by = "x")   0.429    2.466
-## 4             dtk[dtm, nomatch = 0]   0.174    1.000
+## 1    d %>% inner_join(dm, by = "x")   1.114    6.515
+## 2  dt %>% inner_join(dtm, by = "x")   0.952    5.567
+## 3 dtk %>% inner_join(dtm, by = "x")   0.426    2.491
+## 4             dtk[dtm, nomatch = 0]   0.171    1.000
 ```
 
 base is too slow (>100x)
