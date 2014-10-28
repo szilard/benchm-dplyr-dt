@@ -89,11 +89,13 @@ who did a lot of good by working on these excellent open source tools. I'm just 
 understand things.
 
 
-##### To understand (for me):
+##### To understand (for me/maybe developers):
 
-- Why is dplyr with data.frame backend slow (vs. dplyr with data.table backend)
+- Why is dplyr with data.frame backend slow (vs. dplyr with data.table backend) - esp. for
+sorting, aggregation with a large number of groups and joins with a large table
 
-- Why is defining a new column in data.table slow (vs. base/dplyr)
+- Why is defining a new column in data.table slow (vs. base/dplyr) - while data.table used to be
+>100x faster than base, R 3.1 modifies data.frames in place and now data.table is slower
 
 
 ##### To do:
