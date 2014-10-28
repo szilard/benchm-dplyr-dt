@@ -95,7 +95,7 @@ understand things.
 sorting, aggregation with a large number of groups and joins with a large table
 
 - Why is defining a new column in data.table slow (vs. base/dplyr) - while data.table used to be
->100x faster than base, R 3.1 modifies data.frames in place and now data.table is slower
+\>100x faster than base, R 3.1 modifies data.frames in place and now data.table is slower
 
 
 ##### To do:
