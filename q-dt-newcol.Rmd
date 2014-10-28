@@ -1,0 +1,28 @@
+---
+output:
+  html_document:
+    keep_md: true
+---
+
+```{r message=FALSE}
+
+library(data.table)
+
+library(rbenchmark)
+set.seed(123)
+
+```
+
+```{r}
+
+n <- 100e6
+
+d <- data.frame(y = runif(n))
+dt <- as.data.table(d)
+
+benchmark(
+  d$y2 <- 2*d$y,
+  dt[,y2 := 2*y],
+replications=1, columns=c("test", "elapsed", "relative"), order=NULL)
+
+```
