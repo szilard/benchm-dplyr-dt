@@ -70,47 +70,20 @@ A summary of results is here:
 | Join            |    >100     |    4-15     |    4-6     |   1.5-2.5    |    cannot  |       1     |
 
 
+##### Findings:
 
-##### Obvious findings:
+- Having a key (which for data.table it means having the data pre-sorted in place) obviously helps with
+sorting, aggregation and joins (depending on the use case though, the time to generate the key 
+should be added to the timing)
 
-- Having a key (which for data.table it means having the data pre-sorted in place) helps with
-sorting, aggregation and joins.
+- dplyr with data.table backend/source is almost as fast as plain data.table (because in this case dplyr acts as a wrapper and calls data.table functions behind the scenes) - 
+so, you can kindda have both: dplyr API (my personal preference) and speed
 
+- dplyr with data.frame source is slower than data.table for sort, aggregation and joins. Some of
+this has apparently to do with radix sort and binary seearch joining (data.table) being faster
+than hash-table based joins (dplyr) [as described here](https://gist.github.com/arunsrinivasan/db6e1ce05227f120a2c9), but some of it is likely to be improved as [Hadley said here](https://twitter.com/hadleywickham/status/527162872200065025)
 
-##### Surprize (for me):
-
-- dplyr with data.table backend almost as fast as data.table - 
-so, it looks like you can have both: dplyr API (my personal preference) and speed
-
-- Defining a new column in data.table (or dplyr with the data.table backend) is slow
-
-These are by no means a critique of the dplyr and data.table developers. They are great people
-who did a lot of good by working on these excellent open source tools. I'm just trying to 
-understand things.
-
-
-##### To understand (for me/maybe developers):
-
-- Why is dplyr with data.frame backend slow (vs. dplyr with data.table backend) - esp. for
-sorting, aggregation with a large number of groups and joins with a large table
-
-- Why is defining a new column in data.table slow (vs. base/dplyr) - while data.table used to be
-\>100x faster than base, R 3.1 modifies data.frames in place and now data.table is slower
-
-
-##### To do:
-
-- Benchmark a chain of operations
-
-
-
-
-
-
-
-
-
-
+- Defining a new column in data.table (or dplyr with the data.table backend) is slow. I pointed out this to data.table developers Matt and Arun and [this can be fixed](https://github.com/Rdatatable/data.table/issues/921). The extra slowdown in creating a new column with dplyr with data.table (vs plain data.table) [can also be fixed](https://github.com/hadley/dplyr/issues/614).
 
 
 
