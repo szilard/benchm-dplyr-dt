@@ -80,10 +80,10 @@ should be added to the timing)
 so, you can kindda have both: dplyr API (my personal preference) and speed
 
 - dplyr with data.frame source is slower than data.table for sort, aggregation and joins. Some of
-this has apparently to do with radix sort and binary seearch joining (data.table) being faster
-than hash-table based joins (dplyr) [as described here](https://gist.github.com/arunsrinivasan/db6e1ce05227f120a2c9), but some of it is likely to be improved as [Hadley said here](https://twitter.com/hadleywickham/status/527162872200065025)
+this has apparently to do with radix sort and binary search joining (data.table) being faster
+than hash-table based joins (dplyr) [as described here](https://gist.github.com/arunsrinivasan/db6e1ce05227f120a2c9), but some of it is likely to be improved as [Hadley said here](https://twitter.com/hadleywickham/status/527162872200065025).
 
-- Defining a new column in data.table (or dplyr with the data.table backend) is slow. I pointed out this to data.table developers Matt and Arun and [this can be fixed](https://github.com/Rdatatable/data.table/issues/921). The extra slowdown in creating a new column with dplyr with data.table (vs plain data.table) [can also be fixed](https://github.com/hadley/dplyr/issues/614).
+- Defining a new column in data.table (or dplyr with the data.table backend) is slower. I pointed out this to data.table developers Matt and Arun and [this can be fixed](https://github.com/Rdatatable/data.table/issues/921). The extra slowdown in creating a new column with dplyr with data.table source (vs plain data.table) [can also be fixed](https://github.com/hadley/dplyr/issues/614).
 
 
 
