@@ -69,8 +69,10 @@ A summary of results is here:
 | Aggregation     |    8-100    |    4-30     |    4-6     |     1.5      |   1.5-5    |       1     |
 | Join            |    >100     |    4-15     |    4-6     |   1.5-2.5    |    cannot  |       1     |
 
+(the larger numbers are usually for larger `m`, i.e. lots of small groups)
 
-##### Findings:
+
+##### Discussion:
 
 - Having a key (which for data.table it means having the data pre-sorted in place) obviously helps with
 sorting, aggregation and joins (depending on the use case though, the time to generate the key 
@@ -85,5 +87,14 @@ than hash-table based joins (dplyr) [as described here](https://gist.github.com/
 
 - Defining a new column in data.table (or dplyr with the data.table backend) is slower. I pointed out this to data.table developers Matt and Arun and [this can be fixed](https://github.com/Rdatatable/data.table/issues/921). The extra slowdown in creating a new column with dplyr with data.table source (vs plain data.table) [can also be fixed](https://github.com/hadley/dplyr/issues/614).
 
+##### More info:
 
+I'm going to give a short 15-min talk at the [next LA R meetup](http://datascience.la/la-r-meetup-november-11-highlights-from-the-user-2014-conference-part-2/) about dplyr, and I'll talk about
+these results as well, [slides here](https://speakerdeck.com/datasciencela/szilard-pafka-dplyr-plus-basic-benchmark-la-r-meetup-nov-2014).
+
+There are several other benchmarks, for example Matt's [benchmark of group-by](https://github.com/Rdatatable/data.table/wiki/Benchmarks-%3A-Grouping), or Brodie Gaslam's 
+[benchmark of group-by and mutate](http://www.brodieg.com/?p=7). My goal was to look at a wider
+range of operations (but keep the work minimal, so I had to concentrate on a few samples) - 
+and I also wanted to understand the reasons for such performance, and in this respect I'd like
+to thank the developers for the useful pointers.
 
