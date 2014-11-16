@@ -67,7 +67,7 @@ A summary of results (relative running times, lower is better) is here:
 | Sort            |    30-60    |   20-30     |   1.5-3    |      1       |   1.5-3    |       1     |
 | New column      |     1       |     1       |     6      |      6       |      4     |       4     |
 | Aggregation     |    8-100    |    4-30     |    4-6     |     1.5      |   1.5-5    |       1     |
-| Join            |    >100     |    4-15     |    4-6     |   1.5-2.5    |    cannot  |       1     |
+| Join            |    >100     |    4-15     |    4-6     |   1.5-2.5    |      -     |       1     |
 
 (the larger numbers are usually for larger `m`, i.e. lots of small groups)
 
