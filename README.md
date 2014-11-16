@@ -59,7 +59,7 @@ dt[dtm, nomatch=0]
 
 Full code in `bm.Rmd` and results for each n,m in `bm-nxx-mxx.md` files in the repo. Latest CRAN 
 versions of R, dplyr and data.table have been used (R 3.1.1, dplyr 0.3.0.2 and data.table 1.9.4). 
-A summary of results is here:
+A summary of results (relative running times, lower is better) is here:
 
 |                 |    base     |   dplyr-df  |  dplyr-dt  |  dplyr-dt-k  |     dt     |     dt-k    |
 | --------------- | ----------- | ----------- | ---------- | ------------ | ---------- |  ---------- |
