@@ -100,10 +100,9 @@ to thank the developers for the useful pointers.
 
 ##### Python's pandas:
 
-Besides R, Python is almost as widely used for data analysis nowadays (and see how the two dominate in the [DataScience.LA survey on the data science toolbox](http://datascience.la/data-science-toolbox-survey-results-surprise-r-and-python-win/)).
+Besides R, Python is almost as widely used for data analysis nowadays (and see how they dominate in the [DataScience.LA data science toolbox survey](http://datascience.la/data-science-toolbox-survey-results-surprise-r-and-python-win/)).
 
-It looks like [Python's pandas is slower](http://nbviewer.ipython.org/github/szilard/benchm-dplyr-dt/blob/master/bm-pd.ipynb) than data.table for both aggregates and joins (contrary to [measurements/claims
-from almost 3 years ago](https://stackoverflow.com/questions/8991709/why-are-pandas-merges-in-python-faster-than-data-table-merges-in-r)). For example for `n = 10M` and `m = 1M` timings (in seconds, lower is better):
+It looks like Python's pandas (0.15.1) is slower than data.table for both aggregates and joins (contrary to [measurements/claims from almost 3 years ago](https://stackoverflow.com/questions/8991709/why-are-pandas-merges-in-python-faster-than-data-table-merges-in-r)). For example for `n = 10M` and `m = 1M` [runtimes](http://nbviewer.ipython.org/github/szilard/benchm-dplyr-dt/blob/master/bm-pd.ipynb) (in seconds, lower is better):
 
 |                   |  pandas  | data.table |
 |-------------------|----------|------------|
