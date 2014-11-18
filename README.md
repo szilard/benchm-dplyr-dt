@@ -89,7 +89,7 @@ than hash-table based joins (dplyr) [as described here](https://gist.github.com/
 
 ##### More info:
 
-~~I'm going to give~~ I gave a short 15-min talk at the [next LA R meetup](http://datascience.la/la-r-meetup-november-11-highlights-from-the-user-2014-conference-part-2/) about dplyr, and ~~I'll talk~~ I talked about
+~~I'm going to give~~ I gave a short 15-min talk at the [LA R meetup](http://datascience.la/la-r-meetup-november-11-highlights-from-the-user-2014-conference-part-2/) about dplyr, and ~~I'll talk~~ I talked about
 these results as well, [slides here](https://speakerdeck.com/datasciencela/szilard-pafka-dplyr-plus-basic-benchmark-la-r-meetup-nov-2014).
 
 There are several other benchmarks, for example Matt's [benchmark of group-by](https://github.com/Rdatatable/data.table/wiki/Benchmarks-%3A-Grouping), or Brodie Gaslam's 
@@ -110,6 +110,7 @@ It looks like Python's pandas (0.15.1) is slower than data.table for both aggreg
 | Aggregate (keys)  |   0.4    |   0.2      |
 | Join              |   5.9    |    -       |
 | Join (keys)       |   2.1    |   0.5      |
+| Creating keys     |   3.7    |   0.7      |
 
 
 
