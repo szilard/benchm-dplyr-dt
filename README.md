@@ -65,7 +65,7 @@ A summary of results (relative running times, lower is better) is here:
 | --------------- | ----------- | ----------- | ---------- | ------------ | ---------- |  ---------- |
 | Filter          |     2       |     1       |     1      |      1       |      1     |       1     |
 | Sort            |    30-60    |   20-30     |   1.5-3    |      1       |   1.5-3    |       1     |
-| New column      |     1       |     1       |     6      |      6       |      4     |       4     |
+| New column      |     1       |     1       | ~~6~~ 4    |  ~~6~~ 4     | ~~4~~ 1    |  ~~4~~ 1   |
 | Aggregation     |    8-100    |    4-30     |    4-6     |     1.5      |   1.5-5    |       1     |
 | Join            |    >100     |    4-15     |    4-6     |   1.5-2.5    |      -     |       1     |
 
@@ -85,11 +85,11 @@ so, you can kindda have both: dplyr API (my personal preference) and speed
 this has apparently to do with radix sort and binary search joining (data.table) being faster
 than hash-table based joins (dplyr) [as described here](https://gist.github.com/arunsrinivasan/db6e1ce05227f120a2c9), but some of it is likely to be improved as [Hadley said here](https://twitter.com/hadleywickham/status/527162872200065025).
 
-- Defining a new column in data.table (or dplyr with the data.table backend) is slower. I pointed out this to data.table developers Matt and Arun and [this can be fixed](https://github.com/Rdatatable/data.table/issues/921). The extra slowdown in creating a new column with dplyr with data.table source (vs plain data.table) [can also be fixed](https://github.com/hadley/dplyr/issues/614).
+- ~~Defining a new column in data.table (or dplyr with the data.table backend) is slower. I pointed out this to data.table developers Matt and Arun and [this can be fixed](https://github.com/Rdatatable/data.table/issues/921).~~ The extra slowdown in creating a new column with dplyr with data.table source (vs plain data.table) [can also be fixed](https://github.com/hadley/dplyr/issues/614).
 
 ##### More info:
 
-I'm going to give a short 15-min talk at the [next LA R meetup](http://datascience.la/la-r-meetup-november-11-highlights-from-the-user-2014-conference-part-2/) about dplyr, and I'll talk about
+~~I'm going to give~~ I gave a short 15-min talk at the [next LA R meetup](http://datascience.la/la-r-meetup-november-11-highlights-from-the-user-2014-conference-part-2/) about dplyr, and ~~I'll talk~~ I talked about
 these results as well, [slides here](https://speakerdeck.com/datasciencela/szilard-pafka-dplyr-plus-basic-benchmark-la-r-meetup-nov-2014).
 
 There are several other benchmarks, for example Matt's [benchmark of group-by](https://github.com/Rdatatable/data.table/wiki/Benchmarks-%3A-Grouping), or Brodie Gaslam's 
