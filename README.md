@@ -65,7 +65,7 @@ A summary of results (relative running times, lower is better) is here:
 | --------------- | ----------- | ----------- | ---------- | ------------ | ---------- |  ---------- |
 | Filter          |     2       |     1       |     1      |      1       |      1     |       1     |
 | Sort            |    30-60    |   20-30     |   1.5-3    |      1       |   1.5-3    |       1     |
-| New column      |     1       |     1       | ~~6~~ 4    |  ~~6~~ 4     | ~~4~~ 1    |  ~~4~~ 1   |
+| New column      |     1       |     1       | ~~6~~ 4    |  ~~6~~ 4     | ~~4~~ 1    |  ~~4~~ 1    |
 | Aggregation     |    8-100    |    4-30     |    4-6     |     1.5      |   1.5-5    |       1     |
 | Join            |    >100     |    4-15     |    4-6     |   1.5-2.5    |      -     |       1     |
 
@@ -97,4 +97,20 @@ There are several other benchmarks, for example Matt's [benchmark of group-by](h
 range of operations (but keep the work minimal, so I had to concentrate on a few samples) - 
 and I also wanted to understand the reasons for such performance, and in this respect I'd like
 to thank the developers for the useful pointers.
+
+##### Python's pandas:
+
+Besides R, Python is almost as widely used for data analysis nowadays (and see how the two dominate in the [DataScience.LA survey on the data science toolbox](http://datascience.la/data-science-toolbox-survey-results-surprise-r-and-python-win/)).
+
+It looks like [Python's pandas is slower](http://nbviewer.ipython.org/github/szilard/benchm-dplyr-dt/blob/master/bm-pd.ipynb) than data.table for both aggregates and joins (contrary to [measurements/claims
+from almost 3 years ago](https://stackoverflow.com/questions/8991709/why-are-pandas-merges-in-python-faster-than-data-table-merges-in-r)). For example for `n = 10M` and `m = 1M` timings (in seconds, lower is better):
+
+|                   |  pandas  | data.table |
+|-------------------|----------|------------|
+| Aggregate         |   1.5    |    1       |
+| Aggregate (keys)  |   0.4    |   0.2      |
+| Join              |   5.9    |    -       |
+| Join (keys)       |   2.1    |   0.5      |
+
+
 
